@@ -15,8 +15,7 @@ struct DatabaseMigration: AsyncMigration {
             .id()
             .field("name", .string, .required)
             .field("type", .string, .required)
-            .field("safe_cats", .bool, .required)
-            .field("safe_dogs", .bool, .required)
+            .field("kcal", .double, .required)
             .create()
     }
 

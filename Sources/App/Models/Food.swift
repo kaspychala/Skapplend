@@ -22,21 +22,17 @@ final class Food: Model, Content {
     @Field(key: "type")
     var type: String
 
-    @Field(key: "safe_cats")
-    var isSafeToEatForCats: Bool
-
-    @Field(key: "safe_dogs")
-    var isSafeToEatForDogs: Bool
+    @Field(key: "kcal")
+    var kcal: Double
 
     // Creates a new, empty Food.
     init() { }
 
     // Creates a new Food with all properties set.
-    init(id: UUID? = nil, name: String, type: String, isSafeToEatForCats: Bool, isSafeToEatForDogs: Bool) {
+    init(id: UUID? = nil, name: String, type: String, kcal: Double) {
         self.id = id
         self.name = name
         self.type = type
-        self.isSafeToEatForDogs = self.isSafeToEatForDogs
-        self.isSafeToEatForCats = self.isSafeToEatForCats
+        self.kcal = kcal
     }
 }

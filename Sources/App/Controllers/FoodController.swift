@@ -37,8 +37,7 @@ struct FoodController: RouteCollection {
 
         foodFromDb.name = food.name
         foodFromDb.type = food.type
-        foodFromDb.isSafeToEatForDogs = food.isSafeToEatForDogs
-        foodFromDb.isSafeToEatForCats = food.isSafeToEatForCats
+        foodFromDb.kcal = food.kcal
 
         try await foodFromDb.update(on: req.db)
         return .ok
