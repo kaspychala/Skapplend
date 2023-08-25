@@ -25,14 +25,18 @@ final class Food: Model, Content {
     @Field(key: "kcal")
     var kcal: Double
 
+    @Field(key: "weight")
+    var weight: Double
+
     // Creates a new, empty Food.
     init() { }
 
     // Creates a new Food with all properties set.
-    init(id: UUID? = nil, name: String, type: String, kcal: Double) {
+    init(id: UUID? = nil, name: String, type: String, kcal: Double, weight: Double) {
         self.id = id
         self.name = name
         self.type = type
         self.kcal = kcal
+        self.weight = weight
     }
 }

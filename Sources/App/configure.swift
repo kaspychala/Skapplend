@@ -14,7 +14,7 @@ public func configure(_ app: Application) throws {
     ), as: .psql)
 
     // register migration
-    app.migrations.add(DatabaseMigration())
+    app.migrations.add(FoodsDatabaseMigration())
     try app.autoMigrate().wait()
 
     // register routes

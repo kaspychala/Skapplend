@@ -9,13 +9,14 @@ import Foundation
 import Vapor
 import Fluent
 
-struct DatabaseMigration: AsyncMigration {
+struct FoodsDatabaseMigration: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("foods")
             .id()
             .field("name", .string, .required)
             .field("type", .string, .required)
             .field("kcal", .double, .required)
+            .field("weight", .double, .required)
             .create()
     }
 

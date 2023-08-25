@@ -12,15 +12,23 @@ struct FoodController: RouteCollection {
     func boot(routes: Vapor.RoutesBuilder) throws {
         let foods = routes.grouped("foods")
         foods.get(use: index)
+        foods.get("/paginate", use: paginate)
         foods.post(use: create)
         foods.put(use: update)
         foods.group(":foodId") { food in
             food.delete(use: delete)
         }
+        foods.group("paginate") { food in
+            food.get(use: paginate)
+        }
     }
 
     func index(req: Request) async throws -> [Food] {
         try await Food.query(on: req.db).all()
+    }
+
+    func paginate(req: Request) async throws -> [Food] {
+        try await Food.query(on: req.db).paginate(on: req).all()
     }
 
     func create(req: Request) async throws -> HTTPStatus {
@@ -38,6 +46,7 @@ struct FoodController: RouteCollection {
         foodFromDb.name = food.name
         foodFromDb.type = food.type
         foodFromDb.kcal = food.kcal
+        foodFromDb.weight = food.weight
 
         try await foodFromDb.update(on: req.db)
         return .ok
